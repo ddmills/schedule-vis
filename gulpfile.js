@@ -8,16 +8,13 @@ var
   babelify   = require('babelify')
 ;
 
-gulp.task('babelify', function() {
+gulp.task('browserify', function() {
   browserify('source/js/main.js', { debug : false })
     .transform(babelify.configure({ "presets": ["es2015"] }))
     .bundle()
-    .on('error', function(error) {
-      gutil.log('ERROR: ' + error.message);
-    })
+    .on('error', function(error) { gutil.log('ERROR: ' + error.message); })
     .pipe(jetpack.createWriteStream('build/main.js'));
 });
-
 
 gulp.task('html', function() {
   return jetpack.copy('source', 'build', {
@@ -31,4 +28,4 @@ gulp.task('watch', function() {
   gulp.watch('source/**/*.html', ['html']);
 });
 
-gulp.task('default', ['html', 'babelify', 'watch']);
+gulp.task('default', ['html', 'browserify', 'watch']);

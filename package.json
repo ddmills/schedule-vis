@@ -18,8 +18,5 @@
     "fs-jetpack": "^0.7.0",
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.7"
-  },
-  "scripts": {
-    "build": "./node_modules/.bin/gulp build"
   }
 }
