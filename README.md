@@ -1,5 +1,7 @@
 # schedule-vis
-Visualization of RMS and EDF scheduling algorithms
+
+Visualizations for Rate-Monotonic Scheduling (RMS) and Earliest Deadline First
+(EDF) scheduling algorithms.
 
 ## Setup
 
@@ -9,3 +11,11 @@ Visualization of RMS and EDF scheduling algorithms
 4. execute `npm install`
 5. execute `gulp`
 6. open up `schedule-vis/build/index.html`
+
+## Technologies
+
+* NPM for package management
+* Gulp for build system
+* SASS for CSS preprocessor
+* Babel for ES6 support
+* browserify for module management
