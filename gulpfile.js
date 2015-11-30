@@ -9,6 +9,10 @@ var
   sass       = require('gulp-sass')
 ;
 
+gulp.task('clean', function() {
+  return jetpack.cwd('./build').dir('.', { empty : true });
+});
+
 gulp.task('browserify', function() {
   browserify('source/js/main.js', { debug : false })
     .transform(babelify.configure({ "presets": ["es2015"] }))
@@ -36,4 +40,4 @@ gulp.task('watch', function() {
   gulp.watch('source/sass/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['html', 'sass', 'browserify', 'watch']);
+gulp.task('default', ['clean', 'html', 'sass', 'browserify', 'watch']);
