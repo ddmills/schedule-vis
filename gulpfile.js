@@ -22,7 +22,7 @@ gulp.task('babelify', function() {
 });
 
 
-gulp.task('copy', function() {
+gulp.task('html', function() {
   return jetpack.copy(srcDir, destDir, {
     overwrite: true,
     matching: '!*.js'
@@ -31,6 +31,7 @@ gulp.task('copy', function() {
 
 gulp.task('watch', function() {
   gulp.watch(srcDir + '/**/*.js', ['babelify']);
+  gulp.watch(srcDir + '/**/*.html', ['html']);
 });
 
-gulp.task('default', ['copy', 'babelify', 'watch']);
+gulp.task('default', ['html', 'babelify', 'watch']);
