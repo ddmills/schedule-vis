@@ -1,0 +1,25 @@
+{
+  "name": "schedule-vis",
+  "description": "Visualization of RMS and EDF scheduling algorithms",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddmills/schedule-vis.git"
+  },
+  "author": "Dalton Mills",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ddmills/schedule-vis/issues"
+  },
+  "homepage": "https://github.com/ddmills/schedule-vis#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "fs-jetpack": "^0.7.0",
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.7"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/gulp build"
+  }
+}
