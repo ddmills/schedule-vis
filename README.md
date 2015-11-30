@@ -14,8 +14,9 @@ Visualizations for Rate-Monotonic Scheduling (RMS) and Earliest Deadline First
 
 ## Technologies
 
-* NPM for package management
-* Gulp for build system
-* SASS for CSS preprocessor
-* Babel for ES6 support
-* browserify for module management
+* [NPM](https://www.npmjs.com/) for package management
+* [Gulp](http://gulpjs.com/) for build system
+* [SASS](http://sass-lang.com/) for CSS preprocessor
+* [Babel](https://babeljs.io/) for ES6 support
+* [browserify](http://browserify.org/) for module management
+* [primer.css](http://primercss.io/) for CSS framework

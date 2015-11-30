@@ -17,7 +17,7 @@ gulp.task('clean', function() {
 });
 
 /*
- * Transpile es6 code to es2015 using Babel and browserify
+ * Transpile es6 code to es5 using Babel and browserify
  */
 gulp.task('transpile', function() {
   browserify('source/js/main.js', { debug : false })
