@@ -8,30 +8,27 @@ var
   babelify   = require('babelify')
 ;
 
-var srcDir = 'app';
-var destDir = 'build';
-
 gulp.task('babelify', function() {
-  browserify(srcDir + '/src/js/main.js', { debug : false })
+  browserify('source/js/main.js', { debug : false })
     .transform(babelify.configure({ "presets": ["es2015"] }))
     .bundle()
     .on('error', function(error) {
       gutil.log('ERROR: ' + error.message);
     })
-    .pipe(jetpack.createWriteStream(destDir + '/main.js'));
+    .pipe(jetpack.createWriteStream('build/main.js'));
 });
 
 
 gulp.task('html', function() {
-  return jetpack.copy(srcDir, destDir, {
+  return jetpack.copy('source', 'build', {
     overwrite: true,
     matching: '!*.js'
   });
 });
 
 gulp.task('watch', function() {
-  gulp.watch(srcDir + '/**/*.js', ['babelify']);
-  gulp.watch(srcDir + '/**/*.html', ['html']);
+  gulp.watch('source/**/*.js', ['babelify']);
+  gulp.watch('source/**/*.html', ['html']);
 });
 
 gulp.task('default', ['html', 'babelify', 'watch']);
