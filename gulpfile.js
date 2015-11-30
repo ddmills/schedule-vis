@@ -5,7 +5,8 @@ var
   jetpack    = require('fs-jetpack'),
   gulp       = require('gulp'),
   browserify = require('browserify'),
-  babelify   = require('babelify')
+  babelify   = require('babelify'),
+  sass       = require('gulp-sass')
 ;
 
 gulp.task('browserify', function() {
@@ -23,9 +24,16 @@ gulp.task('html', function() {
   });
 });
 
-gulp.task('watch', function() {
-  gulp.watch('source/**/*.js', ['babelify']);
-  gulp.watch('source/**/*.html', ['html']);
+gulp.task('sass', function() {
+  return gulp.src('source/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('default', ['html', 'browserify', 'watch']);
+gulp.task('watch', function() {
+  gulp.watch('source/js/**/*.js', ['babelify']);
+  gulp.watch('source/**/*.html', ['html']);
+  gulp.watch('source/sass/**/*.scss', ['sass']);
+});
+
+gulp.task('default', ['html', 'sass', 'browserify', 'watch']);
