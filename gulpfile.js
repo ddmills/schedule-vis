@@ -50,7 +50,7 @@ gulp.task('sass', function() {
  * Watch for when JS, HTML, or SCSS files change so they can be updated
  */
 gulp.task('watch', function() {
-  gulp.watch('source/js/**/*.js', ['babelify']);
+  gulp.watch('source/js/**/*.js', ['transpile']);
   gulp.watch('source/**/*.html', ['html']);
   gulp.watch('source/sass/**/*.scss', ['sass']);
 });
