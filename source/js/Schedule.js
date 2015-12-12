@@ -2,8 +2,9 @@
  * Schedule
  */
 export default class Schedule {
-  constructor() {
-    
+  constructor(alg, taskset) {
+    this.alg = alg;
+    this.taskset = taskset;
   }
 
   toString() {
