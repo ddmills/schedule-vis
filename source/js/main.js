@@ -1,5 +1,17 @@
 import Task from './Task';
+import TaskSet from './TaskSet';
+import RMS from './RMS';
+import EDF from './EDF';
 import $ from './jquery';
+
+var tasks = new TaskSet();
+var rms = new RMS();
+var edf = new EDF();
+
+tasks.addTask(new Task(0, 2, 1));
+
+console.log(rms.check(tasks));
+console.log(edf.check(tasks));
 
 var t1 = new Task(0, 2, 1);
 var t2 = new Task(0, 4, 1);
