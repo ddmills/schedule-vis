@@ -14,6 +14,10 @@ export default class TaskSet {
     this.tasks.splice(index, 1);
   }
 
+  size() {
+    return this.tasks.length;
+  }
+
   toString() {
     return ``;
   }
