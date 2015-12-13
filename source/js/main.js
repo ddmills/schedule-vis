@@ -12,6 +12,7 @@ var edf = new EDF();
 var inputStart = $('#add-task-start');
 var inputPeriod = $('#add-task-period');
 var inputDuration = $('#add-task-duration');
+var taskTable = $('#table-of-tasks');
 
 $(document).on('click', '#btn-add-task', function() {
   inputStart.closest('.form').removeClass('errored');
@@ -47,5 +48,15 @@ $(document).on('click', '#btn-add-task', function() {
     console.log(rms.check(tasks));
     console.log(edf.check(tasks));
   }
+});
 
+
+tasks.on('task-added', function(t) {
+  taskTable.find('tbody').append(`<tr id='task-'>
+    <td>id...</td>
+    <td>${t.start}</td>
+    <td>${t.period}</td>
+    <td>${t.duration}</td>
+    <td><button type="button">delete</button></td>
+  </tr>`);
 });

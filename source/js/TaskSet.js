@@ -1,13 +1,17 @@
 /*
  * TaskSet
  */
-export default class TaskSet {
+import Emitter from './Emitter';
+
+export default class TaskSet extends Emitter {
   constructor() {
+    super();
     this.tasks = [];
   }
 
   addTask(t) {
     this.tasks.push(t);
+    super.emit('task-added', t);
   }
 
   removeTask(index) {
