@@ -52,11 +52,12 @@ $(document).on('click', '#btn-add-task', function() {
 
 
 tasks.on('task-added', function(t) {
-  taskTable.find('tbody').append(`<tr id='task-'>
-    <td>id...</td>
+  taskTable.find('tbody').append(`<tr id='task-${t.id}'>
+    <td>${t.id}</td>
     <td>${t.start}</td>
     <td>${t.period}</td>
     <td>${t.duration}</td>
     <td><button type="button">delete</button></td>
   </tr>`);
+  console.log(tasks.toString());
 });

@@ -10,6 +10,6 @@ export default class Task {
   }
 
   toString() {
-    return `(${this.start}, ${this.period}, ${this.duration})`;
+    return `Task (id=${this.id}, start=${this.start}, period=${this.period}, duration=${this.duration})`;
   }
 }
