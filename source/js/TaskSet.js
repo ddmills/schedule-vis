@@ -4,9 +4,11 @@
 export default class TaskSet {
   constructor() {
     this.tasks = [];
+    this.nextID = 0;
   }
 
   addTask(t) {
+    t.id = this.nextID++;
     this.tasks.push(t);
   }
 
