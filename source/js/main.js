@@ -57,7 +57,18 @@ tasks.on('task-added', function(t) {
     <td>${t.start}</td>
     <td>${t.period}</td>
     <td>${t.duration}</td>
-    <td><button type="button">delete</button></td>
+    <td><button class='btn-delete-task' data-task='${t.id}' type="button">delete</button></td>
   </tr>`);
   console.log(tasks.toString());
+});
+
+tasks.on('task-deleted', function(t) {
+  var id = t.id;
+  var row = taskTable.find('#task-' + id);
+  row.remove();
+});
+
+$(document).on('click', '.btn-delete-task', function() {
+  var id = $(this).data('task');
+  tasks.removeTask(id);
 });
