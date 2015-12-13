@@ -1,6 +1,8 @@
 /*
  * EDF
  */
+import Schedule from './Schedule';
+
 export default class EDF {
   constructor() {
 
@@ -8,6 +10,9 @@ export default class EDF {
 
   build(taskset) {
 
+
+
+    return new Schedule();
   }
 
   check(taskset) {
