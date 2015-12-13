@@ -2,48 +2,83 @@
 
 var
   gutil      = require('gulp-util'),
-  jetpack    = require('fs-jetpack'),
   gulp       = require('gulp'),
   browserify = require('browserify'),
   babelify   = require('babelify'),
-  sass       = require('gulp-sass')
+  source     = require('vinyl-source-stream'),
+  buffer     = require('vinyl-buffer'),
+  browser    = require('browser-sync'),
+  sass       = require('gulp-sass'),
+  clean      = require('gulp-clean'),
+  uglify     = require('gulp-uglify')
 ;
 
 /*
  * Delete the contents of the build directory
  */
+gulp.task('clean-scripts', function() {
+  gulp.src('build/**/*.js', {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean-css', function() {
+  gulp.src('build/**/*.css', {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean-html', function() {
+  gulp.src('build/**/*.html', {read: false})
+    .pipe(clean());
+});
+
 gulp.task('clean', function() {
-  return jetpack.cwd('./build').dir('.', { empty : true });
+  gulp.src('build', {read: false})
+    .pipe(clean());
 });
 
 /*
  * Transpile es6 code to es5 using Babel and browserify
  */
-gulp.task('transpile', function() {
-  browserify('source/js/main.js', { debug : false })
-    .transform(babelify.configure({ "presets": ["es2015"] }))
+gulp.task('transpile', ['clean-scripts'], function() {
+  return browserify('source/js/main.js', { debug : false })
+    .transform('babelify', {presets: ['es2015']})
     .bundle()
-    .on('error', function(error) { gutil.log('ERROR: ' + error.message); })
-    .pipe(jetpack.createWriteStream('build/main.js'));
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+    .pipe(source('main.js'))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest('./build'))
+    .pipe(browser.stream());
 });
 
 /*
  * Copy HTML files over
  */
-gulp.task('html', function() {
-  return jetpack.copy('source', 'build', {
-    overwrite: true,
-    matching: '!*.js'
+gulp.task('html', ['clean-html'], function() {
+  return gulp.src('source/**/*.html')
+    .pipe(gulp.dest('./build'))
+    .pipe(browser.stream());
+});
+
+/*
+ * Start a server from buid directory
+ */
+gulp.task('serve', function() {
+  browser({
+    server: {
+      baseDir: './build'
+    }
   });
 });
 
 /*
  * Convert SASS files to CSS
  */
-gulp.task('sass', function() {
+gulp.task('sass', ['clean-css'], function() {
   return gulp.src('source/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('build/css'));
+    .pipe(gulp.dest('build/css'))
+    .pipe(browser.stream());
 });
 
 /*
@@ -55,7 +90,7 @@ gulp.task('watch', function() {
   gulp.watch('source/sass/**/*.scss', ['sass']);
 });
 
-/*
- * To run the default task, simply execute the `gulp` command
- */
-gulp.task('default', ['clean', 'html', 'sass', 'transpile', 'watch']);
+
+
+gulp.task('build', ['html', 'sass', 'transpile']);
+gulp.task('default', ['build', 'serve', 'watch']);
