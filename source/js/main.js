@@ -26,8 +26,8 @@ $(document).on('click', '#btn-add-task', function() {
   var duration = inputDuration.val();
 
   var validStart = util.isPositiveInteger(start);
-  var validPeriod = util.isPositiveInteger(period);
-  var validDuration = util.isPositiveInteger(duration);
+  var validPeriod = util.isPositiveInteger(period) && period > 0;
+  var validDuration = util.isPositiveInteger(duration) && duration > 0;
 
   var error = !validStart || !validPeriod || !validDuration;
 

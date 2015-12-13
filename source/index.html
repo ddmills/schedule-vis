@@ -18,19 +18,19 @@
         <dl class='form'>
           <dt><label for='add-task-period'>Period</label></dt>
           <dt><input type='text' id='add-task-period'></dt>
-          <dd class='error'>Period must be a positive integer</dd>
+          <dd class='error'>Period must be a non-zero positive integer</dd>
         </dl>
 
         <dl class='form'>
           <dt><label for='add-task-start'>Duration</label></dt>
           <dt><input type='text' id='add-task-duration'></dt>
-          <dd class='error'>Duration must be a positive integer</dd>
+          <dd class='error'>Duration must be a non-zero positive integer</dd>
         </dl>
 
         <button role='button' type='button' id='btn-add-task' class='btn btn-primary'>Add Task</button>
       </form>
 
-      <table id='table-of-tasks'>
+      <table class='table' id='table-of-tasks'>
         <thead>
           <tr>
             <th scope='col'>Task ID</th>
