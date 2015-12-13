@@ -1,0 +1,12 @@
+.tasktable {
+  width: 100%;
+}
+
+.tasktable > thead > tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.tasktable th, .tasktable td {
+  padding: 8px 0px;
+  text-align: left;
+}

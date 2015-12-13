@@ -14,8 +14,6 @@ var inputPeriod = $('#add-task-period');
 var inputDuration = $('#add-task-duration');
 var taskTable = $('#table-of-tasks');
 
-
-
 $(document).on('click', '#btn-add-task', function() {
   inputStart.closest('.form').removeClass('errored');
   inputPeriod.closest('.form').removeClass('errored');
@@ -59,7 +57,7 @@ tasks.on('task-added', function(t) {
     <td>${t.start}</td>
     <td>${t.period}</td>
     <td>${t.duration}</td>
-    <td><button class='btn-delete-task' data-task='${t.id}' type="button">delete</button></td>
+    <td><button class='btn btn-sm btn-danger btn-delete-task' data-task='${t.id}' type="button">delete</button></td>
   </tr>`);
   console.log(tasks.toString());
 });
