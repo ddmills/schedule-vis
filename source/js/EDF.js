@@ -16,15 +16,8 @@ export default class EDF {
   }
 
   check(taskset) {
-    let n = taskset.size();
     let upperBound = 1;
-    let usage = 0;
-
-    for(let i = 0; i < n; i++) {
-      let ti = taskset.tasks[i];
-      usage += ti.duration/ti.period;
-    }
-
+    let usage = taskset.utilization();
     return usage <= upperBound;
   }
 

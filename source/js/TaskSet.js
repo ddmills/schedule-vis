@@ -24,6 +24,14 @@ export default class TaskSet extends Emitter {
     return null;
   }
 
+  utilization() {
+    let usage = 0;
+    for(var t of this.tasks) {
+      usage += t.duration/t.period;
+    }
+    return usage;
+  }
+
   removeTask(id) {
     var t = this.getTask(id);
     if (t == null) return null;
@@ -38,7 +46,7 @@ export default class TaskSet extends Emitter {
   }
 
   toString() {
-    var s = `TaskSet (n=${this.size()})\n[\n`;
+    var s = `TaskSet (n=${this.size()}, utilization=${this.utilization()})\n[\n`;
     for (var t of this.tasks) {
       s += `\t ${t.toString()}\n`;
     }
