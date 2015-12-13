@@ -6,6 +6,7 @@ export default class Task {
     this.start = start;
     this.period = period;
     this.duration = duration;
+    this.id = -1;
   }
 
   toString() {
