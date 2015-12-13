@@ -12,6 +12,7 @@ var edf = new EDF();
 var inputStart = $('#add-task-start');
 var inputPeriod = $('#add-task-period');
 var inputDuration = $('#add-task-duration');
+var taskTable = $('#table-of-tasks');
 
 
 
@@ -49,5 +50,27 @@ $(document).on('click', '#btn-add-task', function() {
     console.log(edf.check(tasks));
     rms.build(tasks);
   }
+});
 
+
+tasks.on('task-added', function(t) {
+  taskTable.find('tbody').append(`<tr id='task-${t.id}'>
+    <td>${t.id}</td>
+    <td>${t.start}</td>
+    <td>${t.period}</td>
+    <td>${t.duration}</td>
+    <td><button class='btn-delete-task' data-task='${t.id}' type="button">delete</button></td>
+  </tr>`);
+  console.log(tasks.toString());
+});
+
+tasks.on('task-deleted', function(t) {
+  var id = t.id;
+  var row = taskTable.find('#task-' + id);
+  row.remove();
+});
+
+$(document).on('click', '.btn-delete-task', function() {
+  var id = $(this).data('task');
+  tasks.removeTask(id);
 });
