@@ -14,6 +14,7 @@ var edf = new EDF();
 
 var ui = new UI(tasks);
 
+// rebuild schedules whenever task set changes
 tasks.on('change', function() {
   if (tasks.size() > 0) {
     if (rms.check(tasks)) {
