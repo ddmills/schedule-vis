@@ -15,23 +15,32 @@ var
 ;
 
 /*
- * Delete the contents of the build directory
- */
+* Delete javascript from the build directory
+*/
 gulp.task('clean-scripts', function() {
   gulp.src('build/**/*.js', {read: false})
     .pipe(clean());
 });
 
+/*
+* Delete CSS from the build directory
+*/
 gulp.task('clean-css', function() {
   gulp.src('build/**/*.css', {read: false})
     .pipe(clean());
 });
 
+/*
+* Delete HTML from the build directory
+*/
 gulp.task('clean-html', function() {
   gulp.src('build/**/*.html', {read: false})
     .pipe(clean());
 });
 
+/*
+* Delete the contents of the build directory
+*/
 gulp.task('clean', function() {
   gulp.src('build', {read: false})
     .pipe(clean());
@@ -92,8 +101,6 @@ gulp.task('watch', function() {
   gulp.watch('source/**/*.html', ['html']);
   gulp.watch('source/sass/**/*.scss', ['sass']);
 });
-
-
 
 gulp.task('build', ['html', 'sass', 'transpile']);
 gulp.task('default', ['build', 'serve', 'watch']);
