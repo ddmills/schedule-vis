@@ -1,6 +1,7 @@
 import Task from './Task';
 import TaskSet from './TaskSet';
 import Schedule from './Schedule';
+import Helper from './Helper';
 import RMS from './RMS';
 import EDF from './EDF';
 import $ from './jquery';
@@ -12,29 +13,21 @@ var scheduleEDF = new Schedule();
 var rms = new RMS();
 var edf = new EDF();
 
-var inputStart = $('#add-task-start');
 var inputPeriod = $('#add-task-period');
 var inputDuration = $('#add-task-duration');
 var taskTable = $('#table-of-tasks');
 
 $(document).on('click', '#btn-add-task', function() {
-  inputStart.closest('.form').removeClass('errored');
   inputPeriod.closest('.form').removeClass('errored');
   inputDuration.closest('.form').removeClass('errored');
 
-  var start = inputStart.val();
   var period = inputPeriod.val();
   var duration = inputDuration.val();
 
-  var validStart = util.isPositiveInteger(start);
   var validPeriod = util.isPositiveInteger(period) && period > 0;
   var validDuration = util.isPositiveInteger(duration) && duration > 0;
 
-  var error = !validStart || !validPeriod || !validDuration;
-
-  if (!validStart) {
-    inputStart.closest('.form').addClass('errored');
-  }
+  var error = !validPeriod || !validDuration;
 
   if (!validPeriod) {
     inputPeriod.closest('.form').addClass('errored');
@@ -45,12 +38,13 @@ $(document).on('click', '#btn-add-task', function() {
   }
 
   if (!error) {
-    var task = new Task(Number(start), Number(period), Number(duration));
+    var task = new Task(Number(period), Number(duration));
     tasks.addTask(task);
   }
 });
 
 tasks.on('change', function() {
+  console.log('CHANGED');
   if (tasks.size() > 0) {
     if (rms.check(tasks)) {
       scheduleRMS = rms.build(tasks);
@@ -64,7 +58,6 @@ tasks.on('change', function() {
 tasks.on('task-added', function(t) {
   taskTable.find('tbody').append(`<tr id='task-${t.id}'>
     <td>${t.id}</td>
-    <td>${t.start}</td>
     <td>${t.period}</td>
     <td>${t.duration}</td>
     <td><button class='btn btn-sm btn-danger btn-delete-task' data-task='${t.id}' type="button">delete</button></td>
@@ -82,3 +75,5 @@ $(document).on('click', '.btn-delete-task', function() {
   var id = $(this).data('task');
   tasks.removeTask(id);
 });
+
+Helper.populateTaskSet(tasks);
