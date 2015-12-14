@@ -49,24 +49,22 @@ export default class UI {
     }
   }
 
-  onClickDeleteTask() {
-    var id = $(this).data('task');
+  onClickDeleteTask(e) {
+    var id = $(e.target).data('task');
     this.taskSet.removeTask(id);
   }
 
-  onTaskAdded(t) {
-    this.taskTable.find('tbody').append(`<tr id='task-${t.id}'>
-      <td>${t.id}</td>
-      <td>${t.period}</td>
-      <td>${t.duration}</td>
-      <td><button class='btn btn-sm btn-danger btn-delete-task' data-task='${t.id}' type="button">delete</button></td>
+  onTaskAdded(task) {
+    this.taskTable.find('tbody').append(`<tr id='task-${task.id}'>
+      <td>${task.id}</td>
+      <td>${task.period}</td>
+      <td>${task.duration}</td>
+      <td><button class='btn btn-sm btn-danger btn-delete-task' data-task='${task.id}' type="button">delete</button></td>
     </tr>`);
   }
 
-  onTaskDeleted() {
-    var id = t.id;
-    var row = this.taskTable.find('#task-' + id);
-    row.remove();
+  onTaskDeleted(task) {
+    this.taskTable.find('#task-' + task.id).remove();
   }
 
 }
