@@ -42,14 +42,21 @@ $(document).on('click', '#btn-add-task', function() {
   }
 
   if (!error) {
-    var task = new Task(start, period, duration);
+    var task = new Task(Number(start), Number(period), Number(duration));
     tasks.addTask(task);
-    console.log(rms.check(tasks));
-    console.log(edf.check(tasks));
-    rms.build(tasks);
   }
 });
 
+tasks.on('change', function() {
+  if (tasks.size() > 0) {
+    if (rms.check(tasks)) {
+      rms.build(tasks);
+    }
+    if (rms.check(tasks)) {
+
+    }
+  }
+});
 
 tasks.on('task-added', function(t) {
   taskTable.find('tbody').append(`<tr id='task-${t.id}'>

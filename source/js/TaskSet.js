@@ -14,6 +14,7 @@ export default class TaskSet extends Emitter {
     t.id = this.nextID++;
     this.tasks.push(t);
     super.emit('task-added', t);
+    super.emit('change');
     return t;
   }
 
@@ -38,6 +39,7 @@ export default class TaskSet extends Emitter {
     var index = this.tasks.indexOf(t);
     this.tasks.splice(index, 1);
     super.emit('task-deleted', t);
+    super.emit('change');
     return t;
   }
 
