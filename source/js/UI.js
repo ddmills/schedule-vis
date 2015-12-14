@@ -1,3 +1,6 @@
+/*
+ * UI Singleton
+ */
 import Task from './Task';
 import $ from './jquery';
 import Util from './Util';
