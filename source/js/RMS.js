@@ -24,22 +24,18 @@ export default class RMS {
     console.log(taskset);
 
     for(var task of taskset) {
-      /*
-      if(task.start == 0) {
-        waiting.push(new TaskInstance(task, 0, -1));
-      }*/
       countMap[task.id] = 0;
     }
 
     for (var t = 0; t < scheduleSize; t++) {
       for (var task of taskset) {
-        if ((t % (task.start + task.period)) == 0) {
+        if ((t % task.period) == 0) {
           waiting.push(new TaskInstance(task, countMap[task.id], -1));
           countMap[task.id] = countMap[task.id] + 1;
         }
       }
 
-      if(t > next && waiting.length != 0) {
+      if(t >= next && waiting.length != 0) {
         let nextTask = waiting[0];
         let nextIndex = 0;
         for (var task of waiting) {
@@ -48,12 +44,10 @@ export default class RMS {
             nextIndex = waiting.indexOf(task);
           }
         }
-        if(t >= nextTask.task.start) {
-          waiting.splice(nextIndex, 1);
-          nextTask.start = t;
-          instances.push(nextTask);
-          next = t + nextTask.task.duration;
-        }
+        waiting.splice(nextIndex, 1);
+        nextTask.start = t;
+        instances.push(nextTask);
+        next = t + nextTask.task.duration;
       }
     }
 
