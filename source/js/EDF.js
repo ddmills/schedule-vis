@@ -9,9 +9,6 @@ export default class EDF {
   }
 
   build(taskset) {
-
-
-
     return new Schedule();
   }
 

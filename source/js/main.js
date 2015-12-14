@@ -1,11 +1,14 @@
 import Task from './Task';
 import TaskSet from './TaskSet';
+import Schedule from './Schedule';
 import RMS from './RMS';
 import EDF from './EDF';
 import $ from './jquery';
 import util from './Util';
 
 var tasks = new TaskSet();
+var scheduleRMS = new Schedule();
+var scheduleEDF = new Schedule();
 var rms = new RMS();
 var edf = new EDF();
 
@@ -50,10 +53,10 @@ $(document).on('click', '#btn-add-task', function() {
 tasks.on('change', function() {
   if (tasks.size() > 0) {
     if (rms.check(tasks)) {
-      rms.build(tasks);
+      scheduleRMS = rms.build(tasks);
     }
-    if (rms.check(tasks)) {
-
+    if (edf.check(tasks)) {
+      scheduleEDF = edf.build(tasks);
     }
   }
 });
