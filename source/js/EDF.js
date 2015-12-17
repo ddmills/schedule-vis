@@ -50,12 +50,10 @@ export default class EDF {
         waiting.splice(nextIndex, 1);
         nextTask.start = t;
         instances.push(nextTask);
-        next = t + nextTask.duration;
+        next = t + nextTask.task.duration;
       }
     }
-
-
-
+    
     return new Schedule("EDF", taskset, scheduleSize, instances);
   }
 
