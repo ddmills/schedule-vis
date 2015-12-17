@@ -72,6 +72,7 @@ export default class UI {
 
     el.css('background-color', task.primary);
     el.css('border-color', task.secondary);
+    el.css('color', task.tertiary);
     this.taskTable.find('tbody').append(el);
   }
 
@@ -104,6 +105,7 @@ export default class UI {
       el.css('margin-left', left + '%');
       el.css('background-color', inst.task.primary);
       el.css('border-color', inst.task.secondary);
+      el.css('color', inst.task.tertiary);
       el.width(w + '%');
       set.append(el);
     }
