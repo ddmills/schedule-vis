@@ -11,6 +11,7 @@ export default class UI {
   constructor(taskSet) {
     if (!instance) {
       this.taskSet = taskSet;
+      this.UNITSIZE = 6;
 
       this.rmsTable = $('#schedule-rms');
       this.edfTable = $('#schedule-edf');
@@ -80,7 +81,7 @@ export default class UI {
 
 
   makeTaskEl(inst) {
-    return `<span class='vis-task'>T${inst.task.id}<br>[${inst.num}]</span>`;
+    return `<span class='vis-task'>T${inst.task.id}<sub>${inst.num}</sub></span>`;
   }
 
   drawSchedule(s) {
@@ -92,10 +93,10 @@ export default class UI {
     set.html('');
     xaxis.html('');
     if (time <= 0) return;
-    var unit = 100/time;
+
     for (var inst of s.instances) {
-      var w = (inst.task.duration) * unit;
-      var left = inst.start * unit;
+      var w = (inst.task.duration) * this.UNITSIZE;
+      var left = inst.start * this.UNITSIZE;
       var el = $(this.makeTaskEl(inst));
       el.css('margin-left', left + '%');
       el.width(w + '%');
@@ -104,8 +105,8 @@ export default class UI {
 
     for (var i = 0; i < s.time; i++) {
       var unitvis = $(`<span class='vis-unit' title='t=${i}'>${i}</span>`);
-      unitvis.css('margin-left', (unit * i) + '%');
-      unitvis.width(unit + '%');
+      unitvis.css('margin-left', (this.UNITSIZE * i) + '%');
+      unitvis.width(this.UNITSIZE + '%');
       xaxis.append(unitvis);
     }
   }
