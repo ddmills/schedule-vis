@@ -39,7 +39,7 @@ exports.percent = function(n) {
 
 exports.colorSet = function() {
   let c = color({luminosity: 'light'});
-  return [c, exports.shade(c, .20), exports.shade(c, -.20)]
+  return [c, exports.shade(c, -.20), exports.shade(c, -.60)]
 }
 
 exports.shade = function (color, percent) {
