@@ -98,6 +98,8 @@ export default class UI {
       var left = inst.start * this.UNITSIZE;
       var el = $(this.makeTaskEl(inst));
       el.css('margin-left', left + '%');
+      el.css('background-color', inst.task.primary);
+      el.css('border-color', inst.task.secondary);
       el.width(w + '%');
       set.append(el);
     }
