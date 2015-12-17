@@ -1,0 +1,44 @@
+.vis-task {
+  position: absolute;
+  display: inline-block;
+  background-color: #F9F0F0;
+  border: 1px solid pink;
+  font-size: 10px;
+  padding: 0px;
+  height: 100%;
+  color: blue;
+  overflow: hidden;
+}
+
+.vis-task-container {
+  width: 100%;
+  height: 31px;
+  position: relative;
+}
+.vis-time-container {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  border-top: 1px solid #eee;
+}
+
+.vis-container {
+  position: relative;
+  width: 100%;
+  border: 1px solid #909090;
+  background-color: #616161;
+}
+
+.vis-unit {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  font-size: 9px;
+  color: #fff;
+  padding: 2px;
+  text-align: left;
+}
+
+.vis-unit:not(:last-child) {
+  border-right: 1px solid #eee;
+}

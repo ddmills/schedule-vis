@@ -77,8 +77,34 @@ export default class UI {
     // console.log(this.taskSet.toString());
   }
 
+
+  makeTaskEl(inst) {
+    return `<span class='vis-task'>T${inst.task.id}<br>[${inst.num}]</span>`;
+  }
+
   drawSchedule(s) {
-    // console.log(s);
+    var time = s.time;
+    var set = this.rmsTable.find('.vis-task-container');
+    var xaxis = this.rmsTable.find('.vis-time-container');
+    set.html('');
+    xaxis.html('');
+    if (time <= 0) return;
+    var unit = 100/time;
+    for (var inst of s.instances) {
+      var w = (inst.task.duration) * unit;
+      var left = inst.start * unit;
+      var el = $(this.makeTaskEl(inst));
+      el.css('margin-left', left + '%');
+      el.width(w + '%');
+      set.append(el);
+    }
+
+    for (var i = 0; i < s.time; i++) {
+      var unitvis = $(`<span class='vis-unit' title='t=${i}'>${i}</span>`);
+      unitvis.css('margin-left', (unit * i) + '%');
+      unitvis.width(unit + '%');
+      xaxis.append(unitvis);
+    }
   }
 
 }
