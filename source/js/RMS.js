@@ -21,7 +21,6 @@ export default class RMS {
     let next = 0;
     let countMap = {};
     taskset = taskset.tasks;
-    console.log(taskset);
 
     for(var task of taskset) {
       countMap[task.id] = 0;
@@ -52,7 +51,6 @@ export default class RMS {
     }
 
     let sched = new Schedule("RMS", taskset, scheduleSize, instances);
-    console.log(sched);
     return sched;
   }
 

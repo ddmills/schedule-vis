@@ -12,12 +12,15 @@ export default class UI {
     if (!instance) {
       this.taskSet = taskSet;
 
+      this.rmsTable = $('#schedule-rms');
       this.taskTable = $('#table-of-tasks');
       this.inputPeriod = $('#add-task-period');
       this.inputDuration = $('#add-task-duration');
 
       $(document).on('click', '#btn-add-task', this.onClickAddTask.bind(this));
       $(document).on('click', '.btn-delete-task', this.onClickDeleteTask.bind(this));
+
+      taskSet.on('change', this.onSetChange.bind(this));
       taskSet.on('task-added', this.onTaskAdded.bind(this));
       taskSet.on('task-deleted', this.onTaskDeleted.bind(this));
 
@@ -68,6 +71,14 @@ export default class UI {
 
   onTaskDeleted(task) {
     this.taskTable.find('#task-' + task.id).remove();
+  }
+
+  onSetChange() {
+    // console.log(this.taskSet.toString());
+  }
+
+  drawSchedule(s) {
+    // console.log(s);
   }
 
 }
