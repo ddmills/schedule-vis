@@ -15,13 +15,13 @@ export default class RMS {
     taskset.tasks.forEach(function(curr, index, arr) {
       periodSet.push(curr.period);
     });
+
     let scheduleSize = util.lcmArr(periodSet);
     let instances = [];
     let waiting = [];
     let next = 0;
     let countMap = {};
     taskset = taskset.tasks;
-    console.log(taskset);
 
     for(var task of taskset) {
       countMap[task.id] = 0;
@@ -51,9 +51,7 @@ export default class RMS {
       }
     }
 
-    let sched = new Schedule("RMS", taskset, scheduleSize, instances);
-    console.log(sched);
-    return sched;
+    return new Schedule("RMS", taskset, scheduleSize, instances);;
   }
 
   check(taskset) {
