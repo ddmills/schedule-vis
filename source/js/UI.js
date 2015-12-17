@@ -63,12 +63,16 @@ export default class UI {
   }
 
   onTaskAdded(task) {
-    this.taskTable.find('tbody').append(`<tr id='task-${task.id}'>
+    var el = $(`<tr id='task-${task.id}'>
       <td>${task.id}</td>
       <td>${task.period}</td>
       <td>${task.duration}</td>
       <td><button class='btn btn-sm btn-danger btn-delete-task' data-task='${task.id}' type="button">delete</button></td>
     </tr>`);
+
+    el.css('background-color', task.primary);
+    el.css('border-color', task.secondary);
+    this.taskTable.find('tbody').append(el);
   }
 
   onTaskDeleted(task) {

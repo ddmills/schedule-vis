@@ -6,7 +6,11 @@
   border-bottom: 1px solid #ccc;
 }
 
+.tasktable > tbody > tr {
+  border-bottom: 1px solid transparent;
+}
+
 .tasktable th, .tasktable td {
-  padding: 8px 0px;
+  padding: 8px;
   text-align: left;
 }
