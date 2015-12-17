@@ -46,11 +46,11 @@ export default class UI {
     var error = !validPeriod || !validDuration;
 
     if (!validPeriod) {
-      inputPeriod.closest('.form').addClass('errored');
+      this.inputPeriod.closest('.form').addClass('errored');
     }
 
     if (!validDuration) {
-      inputDuration.closest('.form').addClass('errored');
+      this.inputDuration.closest('.form').addClass('errored');
     }
 
     if (!error) {
