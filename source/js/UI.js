@@ -80,7 +80,7 @@ export default class UI {
   }
 
   onSetChange() {
-    $('#set-utilization').html(Util.percent(this.taskSet.utilization()));
+    $('#set-utilization').html(Util.percent(this.taskSet.utilization()) + '%');
   }
 
   makeTaskEl(inst) {
