@@ -21,7 +21,8 @@ tasks.on('change', function() {
     }
     if (edf.check(tasks)) {
       var s = edf.build(tasks);
-      // ui.drawSchedule(s);
+      console.log(s);
+      ui.drawSchedule(s);
     }
   }
 });

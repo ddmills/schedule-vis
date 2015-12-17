@@ -13,6 +13,7 @@ export default class UI {
       this.taskSet = taskSet;
 
       this.rmsTable = $('#schedule-rms');
+      this.edfTable = $('#schedule-edf');
       this.taskTable = $('#table-of-tasks');
       this.inputPeriod = $('#add-task-period');
       this.inputDuration = $('#add-task-duration');
@@ -84,8 +85,10 @@ export default class UI {
 
   drawSchedule(s) {
     var time = s.time;
-    var set = this.rmsTable.find('.vis-task-container');
-    var xaxis = this.rmsTable.find('.vis-time-container');
+    var tbl = s.alg == 'RMS' ? this.rmsTable : this.edfTable;
+
+    var set = tbl.find('.vis-task-container');
+    var xaxis = tbl.find('.vis-time-container');
     set.html('');
     xaxis.html('');
     if (time <= 0) return;
