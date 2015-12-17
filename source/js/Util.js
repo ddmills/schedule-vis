@@ -1,6 +1,8 @@
 /*
  * Util
  */
+import color from './RandomColor';
+
 exports.isPositiveInteger = function(n) {
   return 0 === n % (!isNaN(parseFloat(n)) && 0 <= ~~n);
 }
@@ -33,4 +35,14 @@ exports.lcm = function(a, b) {
 
 exports.percent = function(n) {
   return Math.round(n * 10000) / 100;
+}
+
+exports.colorSet = function() {
+  let c = color({hue: 'light'});
+  return [c, exports.darken(c, -.5), exports.darken(c, -.85)]
+}
+
+exports.darken = function (color, percent) {
+    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
+    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
 }
