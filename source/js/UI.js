@@ -76,9 +76,8 @@ export default class UI {
   }
 
   onSetChange() {
-    // console.log(this.taskSet.toString());
+    $('#set-utilization').html(Util.percent(this.taskSet.utilization()));
   }
-
 
   makeTaskEl(inst) {
     return `<span class='vis-task'>T${inst.task.id}<sub>${inst.num}</sub></span>`;

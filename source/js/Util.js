@@ -30,3 +30,7 @@ exports.gcd = function(a, b) {
 exports.lcm = function(a, b) {
   return (a * b / exports.gcd(a, b));
 }
+
+exports.percent = function(n) {
+  return Math.round(n * 10000) / 100;
+}
