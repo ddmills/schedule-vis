@@ -17,12 +17,18 @@ tasks.on('change', function() {
   if (tasks.size() > 0) {
     if (rms.check(tasks)) {
       var s = rms.build(tasks);
+      ui.hideError('RMS');
       ui.drawSchedule(s);
+    } else {
+      ui.showError('RMS');
     }
     if (edf.check(tasks)) {
       var s = edf.build(tasks);
       console.log(s);
+      ui.hideError('EDF');
       ui.drawSchedule(s);
+    } else {
+      ui.showError('EDF');
     }
   }
 });

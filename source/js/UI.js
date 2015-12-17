@@ -18,6 +18,8 @@ export default class UI {
       this.taskTable = $('#table-of-tasks');
       this.inputPeriod = $('#add-task-period');
       this.inputDuration = $('#add-task-duration');
+      this.rmsError = $('#error-rms');
+      this.edfError = $('#error-edf');
 
       $(document).on('click', '#btn-add-task', this.onClickAddTask.bind(this));
       $(document).on('click', '.btn-delete-task', this.onClickDeleteTask.bind(this));
@@ -91,7 +93,6 @@ export default class UI {
   drawSchedule(s) {
     var time = s.time;
     var tbl = s.alg == 'RMS' ? this.rmsTable : this.edfTable;
-
     var set = tbl.find('.vis-task-container');
     var xaxis = tbl.find('.vis-time-container');
     set.html('');
@@ -115,6 +116,26 @@ export default class UI {
       unitvis.css('margin-left', (this.UNITSIZE * i) + '%');
       unitvis.width(this.UNITSIZE + '%');
       xaxis.append(unitvis);
+    }
+  }
+
+  hideError(alg) {
+    if (alg == 'RMS') {
+      this.rmsTable.show();
+      this.rmsError.hide();
+    } else if (alg == 'EDF') {
+      this.edfTable.show();
+      this.edfError.hide();
+    }
+  }
+
+  showError(alg) {
+    if (alg == 'RMS') {
+      this.rmsTable.hide();
+      this.rmsError.show();
+    } else if (alg == 'EDF') {
+      this.edfTable.hide();
+      this.edfError.show();
     }
   }
 
