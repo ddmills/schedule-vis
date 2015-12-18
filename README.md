@@ -3,6 +3,9 @@
 Visualizations for Rate-Monotonic Scheduling (RMS) and Earliest Deadline First
 (EDF) scheduling algorithms.
 
+## Try it now
+Project build is hosted at: http://ddmills.github.io/schedule-vis/
+
 ## Setup
 
 1. requires [Node Package Manager](https://www.npmjs.com/)
